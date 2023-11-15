@@ -22,7 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-
+    """
+        Сериализатор для модели пользователя для регистрации.
+    """
     class Meta:
         model = User
         fields = '__all__'
