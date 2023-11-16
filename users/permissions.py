@@ -1,14 +1,11 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission
 
 
-# class IsOwnerOrReadOnly(BasePermission):
-#
-#     def has_object_permission(self, request, view, obj):
-#         if request.method in SAFE_METHODS:
-#             return True
-#         return obj.pk == request.user.pk
+class IsThisUser(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.id == obj.id
 
 
 class IsOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return request.user.id == obj.id
+        return request.user == obj.user
