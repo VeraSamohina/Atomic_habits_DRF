@@ -4,6 +4,7 @@ from atomichabit.models import Habit
 from atomichabit.serializers import HabitSerializer
 from rest_framework.permissions import IsAuthenticated
 
+from pagination import HabitPagination
 from users.permissions import IsOwner
 
 
@@ -22,6 +23,7 @@ class HabitListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated | IsOwner]
+    pagination_class = HabitPagination
 
     def get_queryset(self):
         # Возвращаем только привычки текущего пользователя
@@ -48,3 +50,4 @@ class HabitPublicListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(is_public=True)
     permission_classes = [IsAuthenticated]
+    pagination_class = HabitPagination
