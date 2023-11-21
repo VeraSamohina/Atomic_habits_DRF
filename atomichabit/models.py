@@ -18,30 +18,27 @@ class Habit(models.Model):
     - reward (CharField): Вознаграждение за выполнение привычки.
     - execute_time (PositiveSmallIntegerField): Время  на выполнение привычки.
     - is_public (BooleanField): Признак публичности привычки.
+    - date_add (DateField): Дата добавления привычки
     """
-
-    class Place(models.TextChoices):
-        HOME = "HOME", "дома"
-        WORK = "WORK", "на работе"
-        EVERYWHERE = "EVERYWHERE", 'везде'
 
     class Periodicity(models.TextChoices):
         DAILY = "DAILY", "ежедневно"
         WEEKLY = "WEEKLY", "еженедельно"
         WEEKDAYS = "WEEKDAYS", "по будням"
-        WEEKENDS = "WEEKEND", "по выходным"
+        WEEKENDS = "WEEKENDS", "по выходным"
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
-    place = models.CharField(choices=Place.choices, default='everywhere', verbose_name='место')
+    place = models.CharField(max_length=150, default='везде', verbose_name='место')
     habit_time = models.TimeField(verbose_name='время')
     habit_action = models.CharField(max_length=255, verbose_name='действие')
-    periodicity = models.CharField(choices=Periodicity.choices, default='daily', verbose_name='периодичность')
+    periodicity = models.CharField(choices=Periodicity.choices, default='DAILY', verbose_name='периодичность')
     is_nice = models.BooleanField(default=False, verbose_name='признак приятной привычки')
     connect_habit = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='связанная привычка', null=True,
                                       blank=True)
     reward = models.CharField(max_length=1000, verbose_name='вознаграждение', null=True, blank=True)
     execute_time = models.PositiveSmallIntegerField(verbose_name='время выполнения')
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
+    date_add = models.DateField(auto_now_add=True)
 
     def __str__(self):
         """
@@ -50,7 +47,7 @@ class Habit(models.Model):
         Returns:
             str: Строка с описанием привычки.
         """
-        return f'Я буду {self.habit_action} в {self.habit_time}, в {self.place}'
+        return f'Я буду {self.habit_action} в {self.habit_time}  {self.place}'
 
     class Meta:
         verbose_name = 'привычка'

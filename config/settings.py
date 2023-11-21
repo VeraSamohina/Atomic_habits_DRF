@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
     'atomichabit',
     'users',
 ]
@@ -139,3 +140,16 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+
+CELERY_BEAT_SCHEDULE = {
+    'send_remind_in_tg': {
+        'task': 'atomichabit.tasks.send_reminder',
+        'schedule': timedelta(minutes=1),
+    },
+}
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
