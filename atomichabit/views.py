@@ -1,9 +1,8 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 from atomichabit.models import Habit
 from atomichabit.serializers import HabitSerializer
-from rest_framework.permissions import IsAuthenticated
-
 from pagination import HabitPagination
 from users.permissions import IsOwner
 

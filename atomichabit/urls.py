@@ -1,7 +1,8 @@
 from django.urls import path
 
 from atomichabit.apps import AtomichabitConfig
-from atomichabit.views import HabitCreateAPIView, HabitDetailAPIView, HabitListAPIView, HabitPublicListAPIView
+from atomichabit.views import (HabitCreateAPIView, HabitDetailAPIView,
+                               HabitListAPIView, HabitPublicListAPIView)
 
 app_name = AtomichabitConfig.name
 

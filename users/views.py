@@ -1,9 +1,9 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 from users.models import User
 from users.permissions import IsThisUser
-from users.serializers import UserSerializer, UserRegisterSerializer
-from rest_framework.permissions import IsAuthenticated
+from users.serializers import UserRegisterSerializer, UserSerializer
 
 
 class UserCreateAPIView(generics. CreateAPIView):

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from atomichabit.models import Habit
-from atomichabit.validators import HabitTimeValidator, HabitRewardValidator
+from atomichabit.validators import HabitRewardValidator, HabitTimeValidator
 
 
 class HabitSerializer(serializers.ModelSerializer):
