@@ -116,7 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    '<http://localhost:8000>',
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [

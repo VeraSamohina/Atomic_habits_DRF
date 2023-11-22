@@ -1,14 +1,10 @@
 from datetime import datetime
 
-from django.conf import settings
-
 from atomichabit.models import Habit
-
-token = settings.BOT_TOKEN
-current_day = datetime.now().today()
 
 
 def is_day_habit(habit_id):
+    current_day = datetime.now().today()
     habit = Habit.objects.get(pk=habit_id)
     print(habit.periodicity)
     if habit.periodicity == 'DAILY':
