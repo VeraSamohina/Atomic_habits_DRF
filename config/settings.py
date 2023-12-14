@@ -94,7 +94,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db_atomic_habits',
         'USER': 'postgres',
-        'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': 'db',
     }
 }
 # Password validation
